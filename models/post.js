@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
     date: Date
 })
 
-postSchema.set('toJson', {
+postSchema.set('toJSON', {
     transform: (doc, obj) => {
         obj.id = obj._id.toString()
         delete obj._id
