@@ -5,6 +5,10 @@ const Post = require('./models/post')
 
 app.use(express.json())
 
+const morgan = require('morgan')
+morgan.token('body', function (req) { return JSON.stringify(req.body) })
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body\n'))
+
 
 app.get('/api/messages', (req, res) => {
     Post.find({}).then(posts => {
